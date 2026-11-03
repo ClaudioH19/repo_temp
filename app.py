@@ -13,9 +13,8 @@ def salud():
 
 
 # PASO 1. CREAR GET /mediciones: devolver la lista mediciones.
-# TODO: Declare @app.get("/mediciones") y una funcion que retorne jsonify(mediciones), 200.
 @app.get("/mediciones")
-def obtener_mediciones():
+def consultar_mediciones():
     return jsonify(mediciones), 200
 
 
@@ -26,15 +25,12 @@ def recibir_mediciones():
     if not cuerpo or "dispositivo" not in cuerpo or "mediciones" not in cuerpo:
         return jsonify({"error": "Faltan datos"}), 400
 
-    # TODO: Recorra cuerpo["mediciones"] con for, agregue "dispositivo" y use mediciones.append().
-    for m in cuerpo["mediciones"]:
-        m["dispositivo"] = cuerpo["dispositivo"]
-        mediciones.append(m)
-    
-    return jsonify({
-        "mensaje": "Mediciones guardadas correctamente",
-        "cantidad": len(cuerpo["mediciones"])
-    }), 201
+    for registro in cuerpo["mediciones"]:
+        registro["dispositivo"] = cuerpo["dispositivo"]
+        mediciones.append(registro)
+
+    return jsonify({"recibidos": len(cuerpo["mediciones"]),
+                    "total_guardado": len(mediciones)}), 201
 
 
 # FUNCION ENTREGADA: descarga las mediciones desde el navegador.
