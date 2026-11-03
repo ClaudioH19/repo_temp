@@ -14,6 +14,7 @@ def salud():
 
 # PASO 1. CREAR GET /mediciones: devolver la lista mediciones.
 # TODO: Declare @app.get("/mediciones") y una funcion que retorne jsonify(mediciones), 200.
+@app.get("/mediciones")
 
 
 # PASO 2. COMPLETAR POST /mediciones: recibir y guardar registros.
@@ -24,6 +25,10 @@ def recibir_mediciones():
         return jsonify({"error": "Faltan datos"}), 400
 
     # TODO: Recorra cuerpo["mediciones"] con for, agregue "dispositivo" y use mediciones.append().
+    for m in cuerpo["mediciones"]:
+        m["dispositivo"] = cuerpo["dispositivo"]
+        mediciones.append(m)
+    
     return jsonify({"error": "POST sin implementar"}), 501
 
 
