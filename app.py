@@ -31,7 +31,10 @@ def recibir_mediciones():
         m["dispositivo"] = cuerpo["dispositivo"]
         mediciones.append(m)
     
-    return jsonify({"error": "POST sin implementar"}), 501
+    return jsonify({
+        "mensaje": "Mediciones guardadas correctamente",
+        "cantidad": len(cuerpo["mediciones"])
+    }), 201
 
 
 # FUNCION ENTREGADA: descarga las mediciones desde el navegador.
