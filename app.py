@@ -15,6 +15,8 @@ def salud():
 # PASO 1. CREAR GET /mediciones: devolver la lista mediciones.
 # TODO: Declare @app.get("/mediciones") y una funcion que retorne jsonify(mediciones), 200.
 @app.get("/mediciones")
+def obtener_mediciones():
+    return jsonify(mediciones), 200
 
 
 # PASO 2. COMPLETAR POST /mediciones: recibir y guardar registros.
